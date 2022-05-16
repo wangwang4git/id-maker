@@ -60,7 +60,7 @@ func (b *BizAlloc) GetId(uc *SegmentUseCase) (id int64, err error) {
 		id = b.PopId()
 		canGetId = true
 	}
-	//分配ID数组不足开始携程去申请新的ID
+	//分配ID数组不足开始协程去申请新的ID
 	if len(b.IdArray) <= 1 && !b.GetDb {
 		b.GetDb = true
 		b.Mu.Unlock()

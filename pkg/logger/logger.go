@@ -22,6 +22,9 @@ type Logger struct {
 	logger *zerolog.Logger
 }
 
+// NOTICE：开发者实际想要实现哪个接口，应该在代码中写清楚，让编译器对类型进行检查是否实现了这个接口
+// var _ Interface = (*Type)(nil)
+// https://loesspie.com/2021/11/09/go-assert-type-implement-interface/
 var _ Interface = (*Logger)(nil)
 
 // New -.

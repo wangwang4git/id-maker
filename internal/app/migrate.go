@@ -51,3 +51,6 @@ func init() {
 
 	log.Printf("Migrate: up success")
 }
+
+// -tags migrate的含义参见：
+// https://www.digitalocean.com/community/tutorials/customizing-go-binaries-with-build-tags#adding-build-tags

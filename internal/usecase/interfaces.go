@@ -6,6 +6,7 @@ import (
 )
 
 //go:generate mockgen -source=interfaces.go -destination=./mocks_test.go -package=usecase_test
+// TODO: 需要补齐gomock知识
 
 type (
 	Segment interface {

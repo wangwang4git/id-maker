@@ -90,3 +90,5 @@ func (w *Worker) GetId() int64 {
 func (w *Worker) Now() int64 {
 	return time.Now().Unix()
 }
+
+// TODO: 需要继续研究美团论文
