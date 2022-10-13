@@ -1,5 +1,7 @@
 //go:build migrate
 
+// 本特性描述 --> 文档尾部
+
 package app
 
 import (

@@ -23,6 +23,7 @@ swag-v1:
 
 # go mod tidy：整理现有的依赖
 # go mod download：下载 go.mod 文件中指明的所有依赖
+# go -tags  含义参见：https://www.digitalocean.com/community/tutorials/customizing-go-binaries-with-build-tags#adding-build-tags
 run: swag-v1
 	go mod tidy && go mod download && \
 	DISABLE_SWAGGER_HTTP_HANDLER='' GIN_MODE=debug CGO_ENABLED=0 go run -tags migrate ./cmd/app
@@ -63,4 +64,4 @@ migrate-create:
 migrate-up:
 	migrate -path migrations -database 'mysql://$(MYSQL_URL)' up
 .PHONY: migrate-up
-# make文件中的变量
+# 引用make文件中的变量

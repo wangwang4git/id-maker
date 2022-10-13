@@ -50,6 +50,7 @@ func (uc *SegmentUseCase) NewAllocSnowFlakeId() (*snowflake.Worker, error) {
 	return snowflake.NewWorker(1)
 }
 
+// 数据库号段模式，双缓冲机制
 func (b *BizAlloc) GetId(uc *SegmentUseCase) (id int64, err error) {
 	var (
 		canGetId    bool
@@ -64,6 +65,7 @@ func (b *BizAlloc) GetId(uc *SegmentUseCase) (id int64, err error) {
 	if len(b.IdArray) <= 1 && !b.GetDb {
 		b.GetDb = true
 		b.Mu.Unlock()
+		// 双缓冲机制
 		go b.GetIdArray(cancel, uc)
 	} else {
 		b.Mu.Unlock()

@@ -40,6 +40,7 @@ func NewRouter(handler *gin.Engine, l logger.Interface, t usecase.Segment) {
 	// Routers
 	h := handler.Group("/v1")
 	{
+		// --> HTTP请求接口逻辑
 		newSegmentRoutes(h, t, l)
 	}
 }

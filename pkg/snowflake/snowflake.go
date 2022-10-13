@@ -7,6 +7,7 @@ import (
 )
 
 const (
+	// 64位分配：1 31 10 22
 	workerBits uint8 = 10 // 每台机器(节点)的id位数 10位最大可以有2^10=1024个节点(0-1023)
 	numberBits uint8 = 22 // 表示每个集群下的每个节点，1秒内可生成的id序号的二进制位数 即每秒可生成 2^22-1=4194304个唯一id(0-4194303)
 	// 这里求最大值使用了位运算
@@ -64,8 +65,8 @@ func (w *Worker) GetId() int64 {
 		w.number = 0
 		//将机器上一次生成id的时间更新为当前时间
 		w.timestamp = now
-
 	} else {
+		// 时钟回播的处理，持续等待
 		for now < w.timestamp {
 			now = w.Now()
 		}
@@ -92,3 +93,4 @@ func (w *Worker) Now() int64 {
 }
 
 // TODO: 需要继续研究美团论文
+// https://tech.meituan.com/2017/04/21/mt-leaf.html

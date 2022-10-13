@@ -24,6 +24,7 @@ import (
 func Run(cfg *config.Config) {
 	l := logger.New(cfg.Log.Level)
 
+	// clean架构--repository层
 	// Repository
 	mysql, err := mysql.New(
 		cfg.MySQL.URL,
@@ -35,11 +36,13 @@ func Run(cfg *config.Config) {
 	}
 	defer mysql.Close()
 
+	// clean架构--usecase层
 	// Use case
 	segmentUseCase := usecase.New(
 		repo.New(mysql),
 	)
 
+	// clean架构--api层
 	// HTTP Server
 	handler := gin.New()
 	v1.NewRouter(handler, l, segmentUseCase)

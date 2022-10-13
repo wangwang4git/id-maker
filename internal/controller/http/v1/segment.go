@@ -54,6 +54,7 @@ func (r *segmentRoutes) GetId(c *gin.Context) {
 		return
 	}
 
+	// --> 业务逻辑clean架构--usecase层
 	if id, err = r.s.GetId(tag); err != nil {
 		r.l.Error(err, "http - v1 - GetId")
 		errorResponse(c, http.StatusInternalServerError, "service problems")
@@ -65,6 +66,7 @@ func (r *segmentRoutes) GetId(c *gin.Context) {
 }
 
 func (r *segmentRoutes) GetSnowId(c *gin.Context) {
+	// --> 业务逻辑clean架构--usecase层
 	id := r.s.SnowFlakeGetId()
 
 	c.JSON(http.StatusOK, id)
@@ -79,6 +81,7 @@ func (r *segmentRoutes) CreateTag(c *gin.Context) {
 		return
 	}
 
+	// --> 业务逻辑clean架构--usecase层
 	if err := r.s.CreateTag(&request); err != nil {
 		r.l.Error(err, "http - v1 - CreateTag")
 		errorResponse(c, http.StatusBadRequest, "service problems")
